@@ -13,5 +13,10 @@ namespace SamuraiApp.Data
         {
             optionsBuilder.UseSqlServer("Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = SamuraiAppData");
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<SamuraiBattle>().HasKey(s => new { s.SamuraiId, s.BattleId });
+            modelBuilder.Entity<Horse>().ToTable("Horses");
+        }
     }
 }
